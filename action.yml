@@ -15,7 +15,7 @@ inputs:
   XppBinariesSearch: 
     description: 'Search pattern for binaries to package. Optional search pattern for the packages to include from the binaries location. Wildcards can be used, or a list of packages by specifying one package name per line.'
     required: true
-    default: 'VAR'
+    default: ''
   DeployablePackagePath: 
     description: 'Filename and path for the deployable package. Path including filename for the new deployable package.'
     required: true
@@ -27,5 +27,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/UpdateModelVersion.ps1 -xppSourcePath ${{ inputs.xppSourcePath }} -xppDescriptorSearch ${{ inputs.xppDescriptorSearch }}  -xppLayer "${{ inputs.xppLayer }}" -versionNumber "${{ inputs.versionNumber }}"
+    - run: ${{ github.action_path }}/CreateDeployablePackage.ps1 -xppToolsPath "${{ inputs.XppToolsPath }}" -xppBinariesPath "${{ inputs.XppBinariesPath }}"  -xppBinariesSearch "${{ inputs.XppBinariesSearch }}" -deployablePackagePath "${{ inputs.DeployablePackagePath }}" -deploymentFolder "${{ inputs.DeploymentFolder }}"
       shell: powershell
