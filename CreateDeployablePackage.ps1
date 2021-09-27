@@ -8,8 +8,7 @@
         [string]$xppBinariesSearch,
         [Parameter()]
         [string]$deployablePackagePath,
-        [Parameter()]
-        [string]$deploymentFolder
+        $deploymentFolder
         )
 
 
@@ -772,18 +771,16 @@ function Get-FullNormalizedPath {
 ################################################################################
 
 
-if ($xppBinSearch.Contains("`n"))
+if ($xppBinariesSearch.Contains("`n"))
 {
-    [string[]]$xppBinSearch = $xppBinSearch -split "`n"
+    [string[]]$xppBinariesSearch = $xppBinariesSearch -split "`n"
 }
-
-Test-Path -LiteralPath $xppSourcePath -PathType Container
 
 Write-Verbose "Loading compiled helper $PSScriptRoot\VstsTaskSdk.dll."
 Add-Type -LiteralPath $PSScriptRoot\VstsTaskSdk.dll
 
 
-$potentialPackages = Find-VstsMatch -DefaultRoot $xppBinPath -Pattern $xppBinSearch | Where-Object { (Test-Path -LiteralPath $_ -PathType Container) }
+$potentialPackages = Find-Match -DefaultRoot $xppBinariesPath -Pattern $xppBinariesSearch | Where-Object { (Test-Path -LiteralPath $_ -PathType Container) }
 $packages = @()
 if ($potentialPackages.Length -gt 0)
 {
@@ -836,7 +833,7 @@ if ($potentialPackages.Length -gt 0)
                 $version = "1.0.0.0"
             }
 
-            New-XppRuntimePackage -packageName $packageName -packageDrop $packagePath -outputDir $outputDir -metadataDir $xppBinPath -packageVersion $version -binDir $xppToolsPath -enforceVersionCheck $True
+            New-XppRuntimePackage -packageName $packageName -packageDrop $packagePath -outputDir $outputDir -metadataDir $xppBinariesPath -packageVersion $version -binDir $xppToolsPath -enforceVersionCheck $True
         }
 
         Write-Host "Creating deployable package"
