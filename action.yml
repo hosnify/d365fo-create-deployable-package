@@ -22,7 +22,7 @@ inputs:
     default: ''
   deploymentFolder: 
     description: 'Deployment folder for additional files. Advanced settings for additional files from deployment.'
-    required: true
+    required: false
     default: ''
 runs:
   using: "composite"
