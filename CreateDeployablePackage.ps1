@@ -9,7 +9,7 @@
         [Parameter()]
         [string]$deployablePackagePath,
         [Parameter()]
-        [string]$seploymentFolder
+        [string]$deploymentFolder
         )
 
 
