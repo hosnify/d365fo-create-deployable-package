@@ -4,9 +4,12 @@
         [string]$xppToolsPath,
         [Parameter()]
         [string]$xppBinariesPath,
-        $xppBinariesSearch,
-        $deployablePackagePath,
-        $seploymentFolder
+        [Parameter()]
+        [string]$xppBinariesSearch,
+        [Parameter()]
+        [string]$deployablePackagePath,
+        [Parameter()]
+        [string]$seploymentFolder
         )
 
 
