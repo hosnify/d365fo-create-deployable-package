@@ -5,8 +5,8 @@
         [Parameter()]
         [string]$xppBinariesPath,
         $xppBinariesSearch,
-        $deployablePackagePath
-        $seploymentFolder,
+        $deployablePackagePath,
+        $seploymentFolder
         )
 
 
