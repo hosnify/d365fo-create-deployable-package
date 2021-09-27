@@ -4,28 +4,28 @@ branding:
   icon: 'award'  
   color: 'blue'
 inputs:
-  XppToolsPath: 
+  xppToolsPath: 
     description: 'X++ Tools Path. On a VM this will be the bin folder in the PackagesLocalDirectory, on hosted agents this should be the path where the compiler NuGet was installed.'
     required: true
     default: ''
-  XppBinariesPath: 
+  xppBinariesPath: 
     description: 'Location of the X++ binaries to package. Location of the X++ binaries that should be packaged, or the default path for the search pattern.'
     required: true
     default: '*'
-  XppBinariesSearch: 
+  xppBinariesSearch: 
     description: 'Search pattern for binaries to package. Optional search pattern for the packages to include from the binaries location. Wildcards can be used, or a list of packages by specifying one package name per line.'
     required: true
     default: ''
-  DeployablePackagePath: 
+  deployablePackagePath: 
     description: 'Filename and path for the deployable package. Path including filename for the new deployable package.'
     required: true
     default: ''
-  DeploymentFolder: 
+  deploymentFolder: 
     description: 'Deployment folder for additional files. Advanced settings for additional files from deployment.'
     required: true
     default: ''
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/CreateDeployablePackage.ps1 -xppToolsPath "${{ inputs.XppToolsPath }}" -xppBinariesPath "${{ inputs.XppBinariesPath }}"  -xppBinariesSearch "${{ inputs.XppBinariesSearch }}" -deployablePackagePath "${{ inputs.DeployablePackagePath }}" -deploymentFolder "${{ inputs.DeploymentFolder }}"
+    - run: ${{ github.action_path }}/CreateDeployablePackage.ps1 -xppToolsPath "${{ inputs.xppToolsPath }}" -xppBinariesPath "${{ inputs.xppBinariesPath }}"  -xppBinariesSearch "${{ inputs.xppBinariesSearch }}" -deployablePackagePath "${{ inputs.deployablePackagePath }}" -deploymentFolder "${{ inputs.deploymentFolder }}"
       shell: powershell
